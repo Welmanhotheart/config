@@ -1,0 +1,105 @@
+{
+ "dns": {
+   "hosts": {
+     "domain:googleapis.cn": "googleapis.com"
+   },
+   "servers": [
+     "1.1.1.1"
+   ]
+ },
+ "inbounds": [
+   {
+     "listen": "0.0.0.0",
+     "port": 10800,
+     "protocol": "socks",
+     "settings": {
+       "auth": "noauth",
+       "udp": true,
+       "userLevel": 8
+     },
+     "sniffing": {
+       "destOverride": [
+         "http",
+         "tls"
+       ],
+       "enabled": true
+     },
+     "tag": "socks"
+   },
+   {
+     "listen": "0.0.0.0",
+     "port": 10809,
+     "protocol": "http",
+     "settings": {
+       "userLevel": 8
+     },
+     "tag": "http"
+   }
+ ],
+ "log": {
+   "loglevel": "warning"
+ },
+ "outbounds": [
+   {
+     "mux": {
+       "concurrency": -1,
+       "enabled": false
+     },
+     "protocol": "vmess",
+     "settings": {
+       "vnext": [
+         {
+           "address": "45.62.121.158",
+           "port": 12597,
+           "users": [
+             {
+               "alterId": 0,
+               "id": "9cccf122-c516-442b-a70d-20e6db4459d5",
+               "level": 8,
+               "security": "auto"
+             }
+           ]
+         }
+       ]
+     },
+     "streamSettings": {
+       "network": "tcp",
+       "security": ""
+     },
+     "tag": "proxy"
+   },
+   {
+     "protocol": "freedom",
+     "settings": {},
+     "tag": "direct"
+   },
+   {
+     "protocol": "blackhole",
+     "settings": {
+       "response": {
+         "type": "http"
+       }
+     },
+     "tag": "block"
+   }
+ ],
+ "policy": {
+   "levels": {
+     "8": {
+       "connIdle": 300,
+       "downlinkOnly": 1,
+       "handshake": 4,
+       "uplinkOnly": 1
+     }
+   },
+   "system": {
+     "statsInboundUplink": true,
+     "statsInboundDownlink": true
+   }
+ },
+ "routing": {
+   "domainStrategy": "AsIs",
+   "rules": []
+ },
+ "stats": {}
+}
