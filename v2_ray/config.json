@@ -10,7 +10,7 @@
  "inbounds": [
    {
      "listen": "0.0.0.0",
-     "port": 10800,
+     "port": 10808,
      "protocol": "socks",
      "settings": {
        "auth": "noauth",
@@ -27,7 +27,7 @@
      "tag": "socks"
    },
    {
-     "listen": "0.0.0.0",
+     "listen": "127.0.0.1",
      "port": 10809,
      "protocol": "http",
      "settings": {
@@ -49,12 +49,12 @@
      "settings": {
        "vnext": [
          {
-           "address": "45.62.121.158",
-           "port": 12597,
+           "address": "www.welman.work",
+           "port": 443,
            "users": [
              {
                "alterId": 0,
-               "id": "9cccf122-c516-442b-a70d-20e6db4459d5",
+               "id": "e7631fde-13e9-45be-9c4a-800b926f34ba",
                "level": 8,
                "security": "auto"
              }
@@ -64,7 +64,11 @@
      },
      "streamSettings": {
        "network": "tcp",
-       "security": ""
+       "security": "tls",
+       "tlssettings": {
+         "allowInsecure": true,
+         "serverName": "www.welman.work"
+       }
      },
      "tag": "proxy"
    },
