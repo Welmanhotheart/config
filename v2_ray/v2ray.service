@@ -1,0 +1,11 @@
+[Unit]
+Description=starting v2ray
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/v2ray -config /home/weizhiwei/program/v2ray-linux-64/config.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
